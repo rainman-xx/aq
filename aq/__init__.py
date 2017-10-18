@@ -2,7 +2,7 @@
 
 Usage:
     aq [--profile=<profile>] [--region=<region>] [--table-cache-ttl=<seconds>] [-v] [--debug]
-    aq [--profile=<profile>] [--region=<region>] [--table-cache-ttl=<seconds>] [-v] [--debug] <query>
+    aq [--profile=<profile>] [--region=<region>] [--table-cache-ttl=<seconds>] [-v] [--debug] [--format=<formatter>] <query>
 
 Sample queries:
     aq "select tags->'Name' from ec2_instances"
@@ -13,6 +13,8 @@ Options:
     --region=<region>  The region to use. Overrides config/env settings
     --table-cache-ttl=<seconds>  number of seconds to cache the tables
                                  before we update them from AWS again [default: 300]
+    --format=<formatter>  Choose a table, json, or csv formatter [default: table]
+
     -v, --verbose  enable verbose logging
     --debug  enable debug mode
 """
@@ -25,12 +27,12 @@ from docopt import docopt
 
 from aq.engines import BotoSqliteEngine
 from aq.errors import QueryError
-from aq.formatters import TableFormatter
+import aq.formatters
 from aq.logger import initialize_logger
 from aq.parsers import SelectParser
 from aq.prompt import AqPrompt
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 QueryResult = namedtuple('QueryResult', ('parsed_query', 'query_metadata', 'columns', 'rows'))
 
@@ -44,7 +46,12 @@ def get_parser(options):
 
 
 def get_formatter(options):
-    return TableFormatter(options)
+    if (options.get("--format") == "json"):
+        return formatters.JsonFormatter(options)
+    elif (options.get("--format") == "csv"):
+        return formatters.CsvFormatter(options)
+    else:
+        return formatters.TableFormatter(options)
 
 
 def get_prompt(parser, engine, options):
