@@ -75,6 +75,7 @@ setup(
 		'prompt_toolkit',
 		'pygments',
 		'six',
+		'pyyaml'
 	],
 
 	# List additional groups of dependencies here (e.g. development

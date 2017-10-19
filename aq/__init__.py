@@ -13,7 +13,7 @@ Options:
     --region=<region>  The region to use. Overrides config/env settings
     --table-cache-ttl=<seconds>  number of seconds to cache the tables
                                  before we update them from AWS again [default: 300]
-    --format=<formatter>  Choose a table, json, or csv formatter [default: table]
+    --format=<formatter>  Choose a table, json, yaml, or csv formatter [default: table]
 
     -v, --verbose  enable verbose logging
     --debug  enable debug mode
@@ -46,10 +46,13 @@ def get_parser(options):
 
 
 def get_formatter(options):
-    if (options.get("--format") == "json"):
+    format = options.get("--format")
+    if (format == "json"):
         return formatters.JsonFormatter(options)
-    elif (options.get("--format") == "csv"):
+    elif (format == "csv"):
         return formatters.CsvFormatter(options)
+    elif (format == "yaml"):
+        return formatters.YamlFormatter(options)
     else:
         return formatters.TableFormatter(options)
 

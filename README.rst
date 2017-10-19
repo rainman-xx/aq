@@ -31,7 +31,7 @@ Usage
         --region=<region>  The region to use. Overrides config/env settings
         --table-cache-ttl=<seconds>  number of seconds to cache the tables
                                      before we update them from AWS again [default: 300]
-        --format=<formatter>  Choose a table, json, or csv formatter [default: table]
+        --format=<formatter>  Choose a table, json, yaml, or csv formatter [default: table]
 
         -v, --verbose  enable verbose logging
         --debug  enable debug mode
