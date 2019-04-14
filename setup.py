@@ -16,7 +16,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.1.1',
+    version='0.1.2',
 
     description='Query AWS resources with SQL',
     long_description=long_description,
@@ -70,11 +70,11 @@ setup(
     install_requires=[
         'boto3',
         'docopt',
-        'pyparsing',
-        'tabulate',
-        'prompt_toolkit',
-        'pygments',
-        'six',
+        'pyparsing==2.1.7',
+        'tabulate==0.7.7',
+        'prompt_toolkit==1.0.15',
+        'pygments==2.1.3',
+        'six==1.10.0'
     ],
 
     # List additional groups of dependencies here (e.g. development

@@ -50,12 +50,17 @@ class BotoSqliteEngine(object):
         return sqlite_util.connect(absolute_path)
 
     def execute(self, query, metadata):
+        import time
         LOGGER.info('Executing query: %s', query)
+        LOGGER.info('Executing query: %s', query)
+        t = time.process_time() 
         self.load_tables(query, metadata)
         try:
             cursor = self.db.execute(query)
         except sqlite3.OperationalError as e:
             raise QueryError(str(e))
+        elapsed_time = time.process_time() - t
+        LOGGER.info("Elapsed Time: {0}".format(elapsed_time))
         columns = [d[0] for d in cursor.description]
         rows = cursor.fetchall()
         return columns, rows

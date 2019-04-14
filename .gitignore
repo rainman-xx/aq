@@ -66,3 +66,6 @@ target/
 # Virtual env
 venv
 env
+
+# Visual Code
+.vscode/

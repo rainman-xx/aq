@@ -84,3 +84,7 @@ def execute_query(engine, formatter, parser, query):
     columns, rows = engine.execute(parsed_query, metadata)
     return QueryResult(parsed_query=parsed_query, query_metadata=metadata,
                        columns=columns, rows=rows)
+
+if __name__ == '__main__':
+    # execute only if run as the entry point into the program
+    main()
