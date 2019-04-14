@@ -74,7 +74,8 @@ setup(
         'tabulate==0.7.7',
         'prompt_toolkit==1.0.15',
         'pygments==2.1.3',
-        'six==1.10.0'
+        'six==1.10.0',
+        'pyyaml'
     ],
 
     # List additional groups of dependencies here (e.g. development

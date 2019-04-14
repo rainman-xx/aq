@@ -20,14 +20,21 @@ Usage
 
     Usage:
         aq [--profile=<profile>] [--region=<region>] [--table-cache-ttl=<seconds>] [-v] [--debug]
-        aq [--profile=<profile>] [--region=<region>] [--table-cache-ttl=<seconds>] [-v] [--debug] <query>
+        aq [--profile=<profile>] [--region=<region>] [--table-cache-ttl=<seconds>] [-v] [--debug] [--format=<formatter>] <query>
+
+    Sample queries:
+        aq "select tags->'Name' from ec2_instances"
+        aq "select count(*) from us_west_1.ec2_instances"
 
     Options:
         --profile=<profile>  Use a specific profile from your credential file
         --region=<region>  The region to use. Overrides config/env settings
         --table-cache-ttl=<seconds>  number of seconds to cache the tables
                                      before we update them from AWS again [default: 300]
+        --format=<formatter>  Choose a table, json, yaml, or csv formatter [default: table]
+
         -v, --verbose  enable verbose logging
+        --debug  enable debug mode
 
 Running ``aq`` without specifying any query will start a REPL to run your queries interactively.
 
