@@ -70,11 +70,11 @@ setup(
     install_requires=[
         'boto3',
         'docopt',
-        'pyparsing',
-        'tabulate',
-        'prompt_toolkit',
-        'pygments',
-        'six',
+        'pyparsing==2.1.7',
+        'tabulate==0.7.7',
+        'prompt_toolkit==1.0.15',
+        'pygments==2.1.3',
+        'six==1.10.0',
         'pyyaml'
     ],
 
