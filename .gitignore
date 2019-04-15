@@ -69,3 +69,4 @@ env
 
 # Visual Code
 .vscode/
+*.code-workspace

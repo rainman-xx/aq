@@ -27,7 +27,10 @@ from docopt import docopt
 
 from aq.engines import BotoSqliteEngine
 from aq.errors import QueryError
-import aq.formatters
+from aq.formatters import TableFormatter
+from aq.formatters import JsonFormatter
+from aq.formatters import CsvFormatter
+from aq.formatters import YamlFormatter
 from aq.logger import initialize_logger
 from aq.parsers import SelectParser
 from aq.prompt import AqPrompt
@@ -48,13 +51,13 @@ def get_parser(options):
 def get_formatter(options):
     format = options.get("--format")
     if (format == "json"):
-        return formatters.JsonFormatter(options)
+        return JsonFormatter(options)
     elif (format == "csv"):
-        return formatters.CsvFormatter(options)
+        return CsvFormatter(options)
     elif (format == "yaml"):
-        return formatters.YamlFormatter(options)
+        return YamlFormatter(options)
     else:
-        return formatters.TableFormatter(options)
+        return TableFormatter(options)
 
 
 def get_prompt(parser, engine, options):
